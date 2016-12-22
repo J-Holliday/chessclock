@@ -10,7 +10,7 @@ class player():
 
     def __init__(self):
         now = datetime.datetime.now()
-        self.t = datetime.datetime(now.year,now.month,now.day,hour=0,minute=1,second=0,microsecond=0)
+        self.t = datetime.datetime(now.year,now.month,now.day,hour=0,minute=10,second=0,microsecond=0)
         self.zero = datetime.datetime(now.year,now.month,now.day,hour=0,minute=0,second=0,microsecond=0)
         self.pflag = False
 
@@ -20,7 +20,7 @@ class player():
             if self.pflag:
                 dt2 = datetime.datetime.now()
                 d = abs(dt2 - dt1)
-                if d.microseconds > 500000 or d.seconds > 0:
+                if d.microseconds > 100000 or d.seconds > 0:
                     print(self.t)
                     dt1 = datetime.datetime.now()
                     self.t -= d
@@ -39,6 +39,8 @@ class player():
             self.t -= d
         if self.t < self.zero:
             print('Game Over.')
+            return 1
+        return 0
 
 if __name__ == '__main__':
     p1 = player()
